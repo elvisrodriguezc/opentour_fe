@@ -2,42 +2,33 @@ import { createEntityAdapter, createSlice, createAsyncThunk } from "@reduxjs/too
 import { loadAPIData } from "../../services/loadAPIData";
 import axios from "axios"
 import Swal from "sweetalert2";
+import { getConfig } from "../../config";
 
-const fetchManifest = async () => {
-  try {
-    const response = await fetch('/manifest.json');
-    if (!response.ok) {
-      throw new Error(`Failed to fetch manifest.json: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error loading manifest.json:', error);
-    return null;
-  }
-};
 
-const apiUrlFromManifest = async () => {
-  const manifest = await fetchManifest();
-  return manifest?.api_url || null;
-};
-
-const http = axios.create({
-  baseURL: apiUrlFromManifest,
-  headers: {
-    'X-Requested-With': 'XMLHttpRequest',
-  },
-  withCredentials: true
-});
 
 export const login = createAsyncThunk(
   'login/login',
   async (formData, { rejectWithValue }) => {
+    const config = getConfig()
+    const apiUrl = config.apiUrl;
+
+    // Create axios instance with a default URL
+    console.log("Url API desde config:", apiUrl);
+    const http = axios.create({
+      baseURL: apiUrl,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      withCredentials: true
+    });
+
     const data = {
       type: "/login",
       method: "POST",
       params: {},
       data: formData,
     };
+
     try {
       try {
         await http.get('/sanctum/csrf-cookie');
@@ -50,6 +41,8 @@ export const login = createAsyncThunk(
         });
         return rejectWithValue({ status: 503, statusText: 'No se pudo conectar con el servidor' });
       }
+
+      console.log("Data a enviar Login:", data);
       const response = await loadAPIData(data);
       return response;
     } catch (err) {
@@ -100,10 +93,10 @@ const loginSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state) => {
-      state.loading = 'procesando'
+      state.loading = 'pending'
     })
     builder.addCase(login.rejected, (state, { payload }) => {
-      state.loading = 'inactivo'
+      state.loading = 'rejected'
       state.logged = false
       Swal.fire({
         title: `Error de Acceso ${payload.status}`,
@@ -113,12 +106,12 @@ const loginSlice = createSlice({
         footer: "Tendrá 5 oportunidades, luego puede intentarlo en 10 minutos",
         confirmButtonText: "Entendido",
         timerProgressBar: true,
-        // toast: true,
-        // position: "top-end"
+        toast: true,
+        position: "top-end"
       })
     })
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.loading = 'inactivo'
+      state.loading = 'completed'
       state.logged = true
       loginAdapter.setOne(state, { ...payload, id: 1 })
       const user = {
@@ -131,7 +124,6 @@ const loginSlice = createSlice({
         logo: payload.user.company_logo,
         role: payload.user.role,
       }
-      localStorage.setItem("token", JSON.stringify(payload.access_token));
       localStorage.setItem("user", JSON.stringify(user))
       Swal.fire({
         title: 'Bienvenido',
@@ -140,20 +132,19 @@ const loginSlice = createSlice({
         icon: "success",
         confirmButtonText: "Comencemos",
         timerProgressBar: true,
-        // toast: true,
-        // position: "top-end"
+        toast: true,
+        position: "top-end"
       })
     })
-
     builder.addCase(activeuser.pending, (state) => {
-      state.loading = 'procesando'
+      state.loading = 'pending'
     })
     builder.addCase(activeuser.rejected, (state) => {
-      state.loading = 'inactivo'
+      state.loading = 'rejected'
       state.logged = false
     })
     builder.addCase(activeuser.fulfilled, (state, { payload }) => {
-      state.loading = 'inactivo'
+      state.loading = 'completed'
       state.logged = true
       loginAdapter.setOne(state, payload)
       Swal.fire({
@@ -169,13 +160,13 @@ const loginSlice = createSlice({
     })
 
     builder.addCase(logout.pending, (state) => {
-      state.loading = 'procesando'
+      state.loading = 'pending'
     })
     builder.addCase(logout.rejected, (state) => {
-      state.loading = 'inactivo'
+      state.loading = 'rejected'
     })
     builder.addCase(logout.fulfilled, (state, { payload }) => {
-      state.loading = 'inactivo'
+      state.loading = 'completed'
       state.logged = false
       localStorage.clear()
     })

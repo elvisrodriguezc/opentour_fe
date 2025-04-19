@@ -61,14 +61,14 @@ const typevaluesSlice = createSlice({
             state.loading = 'pendiente'
         })
         builder.addCase(fetchTypevalues.rejected, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchTypevalues.fulfilled, (state, { payload }) => {
             state.loading = 'inactivo';
             typevaluesAdapter.setAll(state, payload)
         })
         builder.addCase(newTypevalues.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(newTypevalues.rejected, (state) => {
             state.loading = 'inactivo'
@@ -78,7 +78,7 @@ const typevaluesSlice = createSlice({
             typevaluesAdapter.addOne(state, payload)
         })
         builder.addCase(editTypevalues.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(editTypevalues.rejected, (state) => {
             state.loading = 'inactivo'

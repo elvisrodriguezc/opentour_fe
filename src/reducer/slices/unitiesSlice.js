@@ -41,7 +41,7 @@ const unitiesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchUnities.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchUnities.rejected, (state) => {
             state.loading = 'inactivo'
@@ -51,7 +51,7 @@ const unitiesSlice = createSlice({
             unitiesAdapter.setAll(state, payload)
         })
         builder.addCase(postUnities.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postUnities.rejected, (state) => {
             state.loading = 'inactivo'

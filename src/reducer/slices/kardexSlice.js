@@ -64,7 +64,7 @@ const kardexSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchKardex.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchKardex.rejected, (state) => {
             state.loading = 'inactivo'
@@ -74,7 +74,7 @@ const kardexSlice = createSlice({
             kardexAdapter.setAll(state, payload)
         })
         builder.addCase(postKardex.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postKardex.rejected, (state) => {
             state.loading = 'inactivo'
@@ -84,7 +84,7 @@ const kardexSlice = createSlice({
             kardexAdapter.addOne(state, payload)
         })
         builder.addCase(updateKardex.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(updateKardex.rejected, (state) => {
             state.loading = 'inactivo'
@@ -94,7 +94,7 @@ const kardexSlice = createSlice({
             kardexAdapter.updateOne(state, payload)
         })
         builder.addCase(emptyKardex.pending, (state) => {
-            state.loading = 'procesando';
+            state.loading = 'pending';
         })
         builder.addCase(emptyKardex.rejected, (state) => {
             state.loading = 'inactivo';

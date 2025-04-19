@@ -56,7 +56,7 @@ const typesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchTypeById.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchTypeById.rejected, (state) => {
             state.loading = 'inactivo'
@@ -66,7 +66,7 @@ const typesSlice = createSlice({
             typesAdapter.setAll(state, payload)
         })
         builder.addCase(fetchTypes.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchTypes.rejected, (state) => {
             state.loading = 'inactivo'
@@ -76,7 +76,7 @@ const typesSlice = createSlice({
             typesAdapter.setAll(state, payload)
         })
         builder.addCase(postTypes.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postTypes.rejected, (state) => {
             state.loading = 'inactivo'

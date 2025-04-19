@@ -22,8 +22,8 @@ function DropdownProfile() {
 				<div className="dropdown-divider"></div>
 				<Link to="/login" className="dropdown-item" onClick={
 					() => {
-						localStorage.removeItem('token');
-						localStorage.removeItem('user');
+						localStorage.clear();
+						sessionStorage.clear();
 					}
 				}>Log Out</Link>
 			</div>

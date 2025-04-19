@@ -66,7 +66,7 @@ const transferSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchTransfer.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchTransfer.rejected, (state) => {
             state.loading = 'inactivo'
@@ -76,7 +76,7 @@ const transferSlice = createSlice({
             transferAdapter.setAll(state, payload)
         })
         builder.addCase(postTransfer.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postTransfer.rejected, (state) => {
             state.loading = 'inactivo'
@@ -86,7 +86,7 @@ const transferSlice = createSlice({
             transferAdapter.addOne(state, payload)
         })
         builder.addCase(updateTransfer.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(updateTransfer.rejected, (state) => {
             state.loading = 'inactivo'
@@ -96,7 +96,7 @@ const transferSlice = createSlice({
             transferAdapter.setOne(state, payload)
         })
         builder.addCase(emptyTransfer.pending, (state) => {
-            state.loading = 'procesando';
+            state.loading = 'pending';
         })
         builder.addCase(emptyTransfer.rejected, (state) => {
             state.loading = 'inactivo';

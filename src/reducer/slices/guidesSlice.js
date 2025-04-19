@@ -57,7 +57,7 @@ const guidesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchGuides.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchGuides.rejected, (state) => {
             state.loading = 'rechazado'
@@ -68,7 +68,7 @@ const guidesSlice = createSlice({
         })
 
         builder.addCase(postGuide.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postGuide.rejected, (state) => {
             state.loading = 'inactivo'
@@ -78,7 +78,7 @@ const guidesSlice = createSlice({
             guidesAdapter.addOne(state, payload)
         })
         builder.addCase(updateGuide.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(updateGuide.rejected, (state) => {
             state.loading = 'inactivo'

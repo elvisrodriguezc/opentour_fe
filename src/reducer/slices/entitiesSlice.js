@@ -38,7 +38,7 @@ const entitiesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchEntities.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchEntities.rejected, (state) => {
             state.loading = 'inactivo'
@@ -48,7 +48,7 @@ const entitiesSlice = createSlice({
             entitiesAdapter.setAll(state, payload)
         })
         builder.addCase(insertEntities.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(insertEntities.rejected, (state) => {
             state.loading = 'inactivo'

@@ -42,7 +42,7 @@ const tariffsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchTariffs.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchTariffs.rejected, (state) => {
             state.loading = 'fallido'
@@ -53,7 +53,7 @@ const tariffsSlice = createSlice({
         })
 
         builder.addCase(postTariffs.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postTariffs.rejected, (state) => {
             state.loading = 'fallido'

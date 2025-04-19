@@ -57,7 +57,7 @@ const requirementsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchRequirements.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchRequirements.rejected, (state) => {
             state.loading = 'inactivo'
@@ -67,7 +67,7 @@ const requirementsSlice = createSlice({
             requirementsAdapter.setAll(state, payload)
         })
         builder.addCase(postRequirement.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postRequirement.rejected, (state) => {
             state.loading = 'inactivo'
@@ -77,7 +77,7 @@ const requirementsSlice = createSlice({
             requirementsAdapter.addOne(state, payload)
         })
         builder.addCase(updateRequirement.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(updateRequirement.rejected, (state) => {
             state.loading = 'inactivo'

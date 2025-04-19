@@ -1,0 +1,6 @@
+{
+    "apiUrl": "http://localhost:8000",
+    "url": "http://localhost:3000",
+    "version": "1.0.0",
+    "name": "Sat+"
+}

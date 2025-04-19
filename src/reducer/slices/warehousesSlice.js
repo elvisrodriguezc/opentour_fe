@@ -26,7 +26,7 @@ const warehouseSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchWarehouses.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchWarehouses.rejected, (state) => {
             state.loading = 'inactivo'

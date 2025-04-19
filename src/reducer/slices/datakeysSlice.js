@@ -61,7 +61,7 @@ const datakeysSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchDatakeys.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchDatakeys.rejected, (state) => {
             state.loading = 'inactivo'
@@ -71,7 +71,7 @@ const datakeysSlice = createSlice({
             datakeysAdapter.setAll(state, payload)
         })
         builder.addCase(postDatakey.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postDatakey.rejected, (state) => {
             state.loading = 'inactivo'
@@ -81,7 +81,7 @@ const datakeysSlice = createSlice({
             datakeysAdapter.addOne(state, payload)
         })
         builder.addCase(editDatakey.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(editDatakey.rejected, (state) => {
             state.loading = 'inactivo'

@@ -25,7 +25,7 @@ const numeratorSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchNumerator.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchNumerator.rejected, (state) => {
             state.loading = 'inactivo'

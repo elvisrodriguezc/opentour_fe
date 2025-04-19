@@ -25,7 +25,7 @@ const currenciesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchCurrencies.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchCurrencies.rejected, (state) => {
             state.loading = 'inactivo'

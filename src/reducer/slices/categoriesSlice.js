@@ -39,7 +39,7 @@ const categoriesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchCategories.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchCategories.rejected, (state) => {
             state.loading = 'fallido'
@@ -49,7 +49,7 @@ const categoriesSlice = createSlice({
             categoriesAdapter.setAll(state, payload)
         })
         builder.addCase(postCategories.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postCategories.rejected, (state) => {
             state.loading = 'fallido'

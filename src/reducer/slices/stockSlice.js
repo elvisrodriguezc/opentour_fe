@@ -63,7 +63,7 @@ const stockSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchStock.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchStock.rejected, (state) => {
             state.loading = 'inactivo'
@@ -73,7 +73,7 @@ const stockSlice = createSlice({
             stockAdapter.setAll(state, payload)
         })
         builder.addCase(postStock.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postStock.rejected, (state) => {
             state.loading = 'inactivo'
@@ -83,7 +83,7 @@ const stockSlice = createSlice({
             stockAdapter.addOne(state, payload)
         })
         builder.addCase(updateStock.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(updateStock.rejected, (state) => {
             state.loading = 'inactivo'
@@ -93,7 +93,7 @@ const stockSlice = createSlice({
             stockAdapter.updateOne(state, payload)
         })
         builder.addCase(emptyStock.pending, (state) => {
-            state.loading = 'procesando';
+            state.loading = 'pending';
         })
         builder.addCase(emptyStock.rejected, (state) => {
             state.loading = 'inactivo';

@@ -41,7 +41,7 @@ const ordersSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchOrders.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchOrders.rejected, (state) => {
             state.loading = 'inactivo'
@@ -51,7 +51,7 @@ const ordersSlice = createSlice({
             ordersAdapter.setAll(state, payload)
         })
         builder.addCase(postOrders.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postOrders.rejected, (state) => {
             state.loading = 'inactivo'

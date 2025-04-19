@@ -59,7 +59,7 @@ export const UbigeoSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchDistritos.pending, (state) => {
-            state.loading = 'Procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchDistritos.rejected, (state) => {
             state.loading = 'Completado'

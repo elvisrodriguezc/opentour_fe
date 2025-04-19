@@ -41,7 +41,7 @@ const officesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchOffices.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchOffices.rejected, (state) => {
             state.loading = 'inactivo'
@@ -51,7 +51,7 @@ const officesSlice = createSlice({
             officesAdapter.setAll(state, payload)
         })
         builder.addCase(postOffices.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postOffices.rejected, (state) => {
             state.loading = 'inactivo'

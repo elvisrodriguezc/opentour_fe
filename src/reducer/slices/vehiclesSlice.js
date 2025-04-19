@@ -40,7 +40,7 @@ const vehiclesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchVehicles.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchVehicles.rejected, (state) => {
             state.loading = 'inactivo'
@@ -50,7 +50,7 @@ const vehiclesSlice = createSlice({
             vehiclesAdapter.setAll(state, payload)
         })
         builder.addCase(postVehicles.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(postVehicles.rejected, (state) => {
             state.loading = 'inactivo'

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getConfig } from "../config";
 const getToken = () => {
     const tokenString = localStorage.getItem("token");
     if (!tokenString) {
@@ -27,38 +28,19 @@ const getToken = () => {
     return token;
 };
 
-const fetchManifest = async () => {
-    try {
-        const response = await fetch('/manifest.json');
-        if (!response.ok) {
-            throw new Error(`Failed to fetch manifest.json: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error loading manifest.json:', error);
-        return null;
-    }
-};
 
-const urlFromManifest = async () => {
-    const manifest = await fetchManifest();
-    return manifest?.url || null;
-};
-
-const apiUrlFromManifest = async () => {
-    const manifest = await fetchManifest();
-    return manifest?.api_url || null;
-};
 
 const loadAPIData = async (data) => {
+    const config = getConfig()
     const token = getToken()
-
     const contentType = data.multipart ? "multipart/form-data" : "application/json";
+    const apiUrl = config.apiUrl;
+    const url = config.url;
 
     const configData = {
-        url: `${apiUrlFromManifest}/api${data.type}`,
+        url: `${apiUrl}/api${data.type}`,
         headers: {
-            'Access-Control-Allow-Origin': urlFromManifest,
+            'Access-Control-Allow-Origin': url,
             'Authorization': token ? `Bearer ${token}` : '',
             'Accept': 'application/json',
             'Content-Type': contentType,
@@ -67,7 +49,7 @@ const loadAPIData = async (data) => {
         params: data.params,
         data: data.data
     };
-
+    console.log('Sending Data:', configData)
     return (await axios(configData)).data
 };
 

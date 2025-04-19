@@ -10,16 +10,15 @@ export default function UsernameForm() {
             <div className="form-floating mb-15px">
                 <FormControl
                     type="email"
-                    name="emailAddress"
-                    id="emailAddress"
+                    name="email"
+                    id="email"
                     placeholder="Correo Electrónico"
                     autoComplete="email"
                     autoFocus
                     required
-                    value={'elvisrodriguezc@gmail.com'}
                     className="form-control h-45px fs-13px"
                 />
-                <FormLabel htmlFor="emailAddress" className="d-flex align-items-center fs-13px text-gray-600">Correo Electrónico</FormLabel>
+                <FormLabel htmlFor="email" className="d-flex align-items-center fs-13px text-gray-600">Correo Electrónico</FormLabel>
             </div>
             <div className="form-floating mb-15px">
                 <FormControl
@@ -27,7 +26,6 @@ export default function UsernameForm() {
                     name="password"
                     placeholder="Contraseña"
                     id="password"
-                    value={'password'}
                     className="form-control h-45px fs-13px"
                     required
                 />
@@ -47,7 +45,6 @@ export default function UsernameForm() {
                 </label>
             </div>
             <div className="mb-15px">
-
                 <button
                     type="submit"
                     disabled={pending}
@@ -66,7 +63,7 @@ export default function UsernameForm() {
                     </Spinner>
                 </div>
                 <div className={`mb-40px pb-40px text-body ${pending ? '' : 'd-none'}`} >
-                    {data ? `Solicitando acceso ${data?.get("emailAddress")}...` : ''}</div>
+                    {data ? `Solicitando acceso ${data?.get("email")}...` : ''}</div>
 
             </div>
             <div className={`mb-40px pb-40px text-body ${pending ? 'd-none' : ''}`}>

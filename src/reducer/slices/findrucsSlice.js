@@ -28,7 +28,7 @@ const findrucsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(findByRUC.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(findByRUC.rejected, (state) => {
             state.loading = 'inactivo'

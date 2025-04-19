@@ -42,7 +42,7 @@ const usersSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(fetchUsers.rejected, (state) => {
             state.loading = 'inactivo'
@@ -52,7 +52,7 @@ const usersSlice = createSlice({
             usersAdapter.setAll(state, payload)
         })
         builder.addCase(newUsers.pending, (state) => {
-            state.loading = 'procesando'
+            state.loading = 'pending'
         })
         builder.addCase(newUsers.rejected, (state) => {
             state.loading = 'inactivo'

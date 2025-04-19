@@ -1,28 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import UsernameForm from './components/UsernameForm';
-import { submitForm } from './components/actions';
 import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../reducer/slices/loginSlice';
+import { Spinner } from 'react-bootstrap';
 
 function LoginV3() {
   const ref = useRef(null);
+
+  const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.login)
+
   const [redirectToDashboard, setRedirectToDashboard] = useState(false);
 
-  const tokenSaved = localStorage.getItem('token');
+  const tokenSaved = localStorage.getItem('token') || sessionStorage.getItem('token');
+
   useEffect(() => {
     // Verifica si el token existe y redirige al dashboard
     if (tokenSaved) {
-      console.log("LoginV3: Token encontrado. Redirigiendo al dashboard.");
       setRedirectToDashboard(true);
-    } else {
-      console.log("LoginV3: Token no encontrado. No redirigiendo.");
     }
   }, [tokenSaved]);
 
   if (redirectToDashboard) {
-    console.log("LoginV3: Estado redirectToDashboard es true. Renderizando <Navigate>.");
-    // Renderiza el componente Navigate para ir al dashboard
     return <Navigate to='/dashboard/v3' replace={true} />; // ¡Usa replace!
+  }
+
+  async function submitForm(query) {
+
+    const formValues = Object.fromEntries(query);
+    dispatch(login(formValues))
+      .then((res) => {
+        if (res.meta.requestStatus === "fulfilled") {
+          if (formValues.hasOwnProperty('rememberMe') && formValues.rememberMe === "1") {
+            localStorage.setItem("token", JSON.stringify(res.payload.token));
+          } else {
+            sessionStorage.setItem("token", JSON.stringify(res.payload.token));
+          }
+          setRedirectToDashboard(true);
+        }
+      })
+      .catch((error) => {
+        console.error("Error in Promise:", error);
+        return false; // Indicate failure
+      })
   }
 
   return (
@@ -42,6 +64,14 @@ function LoginV3() {
             <div className="d-flex align-items-center">
               <span className="logo"></span>
               <b>Sat</b> +
+              <Spinner
+                animation="grow"
+                variant="success"
+                size="md"
+                role="status"
+                className={`${loading === 'pending' ? '' : 'd-none'}`}
+              >
+              </Spinner>
             </div>
             <small>Prepárate para un gran día de trabajo. </small>
           </div>
@@ -53,8 +83,10 @@ function LoginV3() {
           <form
             ref={ref}
             action={async (formData) => {
-              await submitForm(formData);
-              ref.current.reset();
+              await submitForm(formData)
+                .then(() => {
+                  ref.current.reset();
+                })
             }}
             className="fs-13px">
             <UsernameForm />
