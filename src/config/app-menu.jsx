@@ -1,18 +1,21 @@
-const Menu = [
-  { path: 'dashboard', icon: 'fa fa-sitemap', title: 'Dashboard',
+const Color = [
+  {
+    path: 'dashboard', icon: 'fa fa-sitemap', title: 'Dashboard',
     children: [
       { path: '/dashboard/v1', title: 'Dashboard v1' },
       { path: '/dashboard/v2', title: 'Dashboard v2' },
       { path: '/dashboard/v3', title: 'Dashboard v3' }
     ]
   },
-  { path: '/ai', icon: 'fa fa-microchip', title: 'AI Studio', label: 'NEW',
+  {
+    path: '/ai', icon: 'fa fa-microchip', title: 'AI Studio', label: 'NEW',
     children: [
       { path: '/ai/chat', title: 'AI Chat' },
       { path: '/ai/image-generator', title: 'AI Image Generator' }
     ]
   },
-  { path: '/email', icon: 'fa fa-hdd', title: 'Email', badge: '10',
+  {
+    path: '/email', icon: 'fa fa-hdd', title: 'Email', badge: '10',
     children: [
       { path: '/email/inbox', title: 'Inbox' },
       { path: '/email/compose', title: 'Compose' },
@@ -20,7 +23,8 @@ const Menu = [
     ]
   },
   { path: '/widgets', icon: 'fab fa-simplybuilt', title: 'Widgets', label: 'NEW' },
-  { path: '/ui', icon: 'fa fa-gem', title: 'UI Elements', label: 'NEW',
+  {
+    path: '/ui', icon: 'fa fa-gem', title: 'UI Elements', label: 'NEW',
     children: [
       { path: '/ui/general', title: 'General', highlight: true },
       { path: '/ui/typography', title: 'Typograhy' },
@@ -38,20 +42,23 @@ const Menu = [
     ]
   },
   { path: '/bootstrap-5', img: '/assets/img/logo/logo-bs5.png', title: 'Bootstrap 5', label: 'NEW' },
-  { path: '/form', icon: 'fa fa-list-ol', title: 'Form Stuff', label: 'NEW',
+  {
+    path: '/form', icon: 'fa fa-list-ol', title: 'Form Stuff', label: 'NEW',
     children: [
       { path: '/form/elements', title: 'Form Elements', highlight: true },
       { path: '/form/plugins', title: 'Form Plugins', highlight: true },
       { path: '/form/wizards', title: 'Form Wizards', highlight: true }
     ]
   },
-  { path: '/table', icon: 'fa fa-table', title: 'Tables',
+  {
+    path: '/table', icon: 'fa fa-table', title: 'Tables',
     children: [
       { path: '/table/elements', title: 'Table Elements' },
       { path: '/table/plugins', title: 'Table Plugins' }
     ]
   },
-  { path: '/pos', icon: 'fa fa-cash-register', title: 'POS System', label: 'NEW',
+  {
+    path: '/pos', icon: 'fa fa-cash-register', title: 'POS System', label: 'NEW',
     children: [
       { path: '/pos/customer-order', title: 'Customer Order' },
       { path: '/pos/kitchen-order', title: 'Kitchen Order' },
@@ -60,7 +67,8 @@ const Menu = [
       { path: '/pos/menu-stock', title: 'Menu Stock' },
     ]
   },
-  { path: '/chart', icon: 'fa fa-chart-pie', title: 'Chart', label: 'NEW',
+  {
+    path: '/chart', icon: 'fa fa-chart-pie', title: 'Chart', label: 'NEW',
     children: [
       { path: '/chart/js', title: 'Chart JS' },
       { path: '/chart/apex', title: 'Apex Chart', highlight: true }
@@ -68,14 +76,16 @@ const Menu = [
   },
   { path: '/landing', icon: 'fa fa-crown', title: 'Landing Page' },
   { path: '/calendar', icon: 'fa fa-calendar', title: 'Calendar' },
-  { path: '/map', icon: 'fa fa-map', title: 'Map',
+  {
+    path: '/map', icon: 'fa fa-map', title: 'Map',
     children: [
       { path: '/map/google', title: 'Google Map' },
       { path: '/map/vector', title: 'Vector Map' },
     ]
   },
   { path: '/gallery', icon: 'fa fa-image', title: 'Gallery' },
-  { path: '/page-option', icon: 'fa fa-cogs', title: 'Page Options', label: 'NEW',
+  {
+    path: '/page-option', icon: 'fa fa-cogs', title: 'Page Options', label: 'NEW',
     children: [
       { path: '/page-option/blank', title: 'Blank Page' },
       { path: '/page-option/with-footer', title: 'Page with Footer' },
@@ -96,7 +106,8 @@ const Menu = [
       { path: '/page-option/with-search-sidebar', title: 'Page with Search Sidebar', highlight: true }
     ]
   },
-  { path: '/extra', icon: 'fa fa-gift', title: 'Extra', label: 'NEW',
+  {
+    path: '/extra', icon: 'fa fa-gift', title: 'Extra', label: 'NEW',
     children: [
       { path: '/extra/timeline', title: 'Timeline' },
       { path: '/extra/coming-soon', title: 'Coming Soon Page' },
@@ -117,7 +128,8 @@ const Menu = [
       { path: '/extra/settings-page', title: 'Settings Page', highlight: true }
     ]
   },
-  { path: '/user', icon: 'fa fa-key', title: 'Login & Register',
+  {
+    path: '/user', icon: 'fa fa-key', title: 'Login & Register',
     children: [
       { path: '/user/login-v1', title: 'Login' },
       { path: '/user/login-v2', title: 'Login v2' },
@@ -125,16 +137,20 @@ const Menu = [
       { path: '/user/register-v3', title: 'Register v3' }
     ]
   },
-  { path: '/helper', icon: 'fa fa-medkit', title: 'Helper',
+  {
+    path: '/helper', icon: 'fa fa-medkit', title: 'Helper',
     children: [
       { path: '/helper/css', title: 'Predefined CSS Classes' }
     ]
   },
-  { path: '/menu', icon: 'fa fa-align-left', title: 'Menu Level',
+  {
+    path: '/menu', icon: 'fa fa-align-left', title: 'Menu Level',
     children: [
-      { path: '/menu/menu-1-1', title: 'Menu 1.1',
+      {
+        path: '/menu/menu-1-1', title: 'Menu 1.1',
         children: [
-          { path: '/menu/menu-1-1/menu-2-1', title: 'Menu 2.1',
+          {
+            path: '/menu/menu-1-1/menu-2-1', title: 'Menu 2.1',
             children: [
               { path: '/menu/menu-1-1/menu-2-1/menu-3-1', title: 'Menu 3.1' },
               { path: '/menu/menu-1-1/menu-2-1/menu-3-2', title: 'Menu 3.2' }
@@ -150,4 +166,38 @@ const Menu = [
   },
 ]
 
+const Programation = [
+  {
+    path: '/programation', icon: 'fa fa-code', title: 'Programación Diaria',
+    children: [
+      {
+        path: '/programation/programations', title: 'Programación',
+      },
+    ]
+  },
+  {
+    path: '/sales', icon: 'fa fa-shopping-cart', title: 'Ventas',
+    children: [
+      {
+        path: '/sales/sales', title: 'Ventas',
+      },
+    ]
+  },
+  {
+    path: '/verify', icon: 'fa fa-check', title: 'Verificación',
+    children: [
+      {
+        path: '/verify/verify', title: 'Verificación',
+      },
+    ]
+  },
+  {
+    path: '/registry', icon: 'fa fa-user-check', title: 'Registro',
+  }
+]
+
+const Menu = {
+  "sadmin": [...Programation, ...Color],
+  "admin": [...Programation],
+}
 export default Menu;

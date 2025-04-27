@@ -4,27 +4,12 @@ import { loadAPIData } from "../../services/loadAPIData";
 export const fetchVehicles = createAsyncThunk(
     'vehicles/fetchVehicles',
     // eslint-disable-next-line no-unused-vars
-    async (set, { dispatch }) => {
+    async (_, { dispatch }) => {
         const data = {
-            type: "/v1/vehicles",
+            type: "/vehicles",
             method: "GET",
-            params: set,
-            data: {},
-        };
-        return await loadAPIData(data)
-            .then((res) => res.data)
-            .catch((error) => console.log(error))
-    });
-
-export const postVehicles = createAsyncThunk(
-    'vehicles/postVehicles',
-    // eslint-disable-next-line no-unused-vars
-    async (formData, { dispatch }) => {
-        const data = {
-            type: "/v1/vehicles",
-            method: "POST",
             params: {},
-            data: formData,
+            data: {},
         };
         return await loadAPIData(data)
             .then((res) => res.data)
@@ -36,29 +21,18 @@ export const vehiclesAdapter = createEntityAdapter({
 
 const vehiclesSlice = createSlice({
     name: 'vehicles',
-    initialState: vehiclesAdapter.getInitialState({ loading: 'inactivo' }),
+    initialState: vehiclesAdapter.getInitialState({ loading: 'empty' }),
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchVehicles.pending, (state) => {
             state.loading = 'pending'
         })
         builder.addCase(fetchVehicles.rejected, (state) => {
-            state.loading = 'inactivo'
+            state.loading = 'rejected'
         })
         builder.addCase(fetchVehicles.fulfilled, (state, { payload }) => {
-            state.loading = 'inactivo';
+            state.loading = 'completed';
             vehiclesAdapter.setAll(state, payload)
-        })
-        builder.addCase(postVehicles.pending, (state) => {
-            state.loading = 'pending'
-        })
-        builder.addCase(postVehicles.rejected, (state) => {
-            state.loading = 'inactivo'
-        })
-        builder.addCase(postVehicles.fulfilled, (state, { payload }) => {
-            console.log(payload)
-            state.loading = 'inactivo';
-            vehiclesAdapter.addOne(state, payload)
         })
     },
 });

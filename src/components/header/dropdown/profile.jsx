@@ -19,7 +19,7 @@ function DropdownProfile() {
 					<span className="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
 				</Link>
 				<Link to="/calendar" className="dropdown-item">Calendario</Link>
-				<Link to="/extra/settings-page" className="dropdown-item">Configurar</Link>
+				<Link to="/settings" className="dropdown-item">Configurar</Link>
 				<div className="dropdown-divider"></div>
 				<Link to="/login" className="dropdown-item " onClick={
 					() => {

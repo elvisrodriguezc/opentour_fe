@@ -6,7 +6,7 @@ export const fetchTypevalues = createAsyncThunk(
     // eslint-disable-next-line no-unused-vars
     async (type, { dispatch }) => {
         const data = {
-            type: "/v1/typevalues",
+            type: "/typevalues",
             method: "GET",
             params: {
                 type: type
@@ -58,33 +58,35 @@ const typevaluesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchTypevalues.pending, (state) => {
-            state.loading = 'pendiente'
-        })
-        builder.addCase(fetchTypevalues.rejected, (state) => {
             state.loading = 'pending'
         })
+        builder.addCase(fetchTypevalues.rejected, (state) => {
+            state.loading = 'rejected'
+        })
         builder.addCase(fetchTypevalues.fulfilled, (state, { payload }) => {
-            state.loading = 'inactivo';
+            state.loading = 'completed';
             typevaluesAdapter.setAll(state, payload)
         })
+
         builder.addCase(newTypevalues.pending, (state) => {
             state.loading = 'pending'
         })
         builder.addCase(newTypevalues.rejected, (state) => {
-            state.loading = 'inactivo'
+            state.loading = 'rejected'
         })
         builder.addCase(newTypevalues.fulfilled, (state, { payload }) => {
-            state.loading = 'inactivo';
+            state.loading = 'completed';
             typevaluesAdapter.addOne(state, payload)
         })
+
         builder.addCase(editTypevalues.pending, (state) => {
             state.loading = 'pending'
         })
         builder.addCase(editTypevalues.rejected, (state) => {
-            state.loading = 'inactivo'
+            state.loading = 'rejected'
         })
         builder.addCase(editTypevalues.fulfilled, (state, { payload }) => {
-            state.loading = 'inactivo';
+            state.loading = 'completed';
             typevaluesAdapter.updateOne(state, payload)
         })
     },

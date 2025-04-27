@@ -84,6 +84,16 @@ import RegisterV3 from './../pages/user/register-v3.jsx';
 import HelperCSS from './../pages/helper/helper-css.js';
 import ProtectedRoute from './ProtectedRoute.jsx';
 
+import SettingsPage from '../pages/settings/settings-page.jsx';
+import Programations from '../pages/programation/programations.jsx';
+import Programation from '../pages/programation/programation.jsx';
+import ProgService from '../pages/programation/progservice.jsx';
+import Sales from '../pages/salesforce/sales.jsx';
+import Journeypass from '../pages/salesforce/journeypass.jsx';
+import Services from '../pages/verify/services.jsx';
+import CheckJourneyPass from '../pages/verify/checkjourneypass.jsx';
+import Registry from '../pages/registry/registry.jsx';
+
 const AppRoute = [
 	{
 		path: '/login/*',
@@ -103,6 +113,39 @@ const AppRoute = [
 			{
 				path: '',
 				element: <Navigate to='/dashboard/v3' />
+			},
+			{
+				path: 'programation/*',
+				element: <Outlet />,
+				children: [
+					{ path: 'programations', element: <Programations /> },
+					{ path: 'programation/:id', element: <Programation /> },
+					{ path: 'service/:id', element: <ProgService /> },
+				]
+			},
+			{
+				path: 'sales/*',
+				element: <Outlet />,
+				children: [
+					{ path: 'sales', element: <Sales /> },
+					{ path: 'sales/:id', element: <Journeypass /> },
+				]
+			},
+			{
+				path: 'verify/*',
+				element: <Outlet />,
+				children: [
+					{ path: 'verify', element: <Services /> },
+					{ path: 'verify/:id', element: <CheckJourneyPass /> },
+				]
+			},
+			{
+				path: 'registry',
+				element: <Registry />,
+			},
+			{
+				path: 'settings',
+				element: <SettingsPage />
 			},
 			{
 				path: 'dashboard/*',

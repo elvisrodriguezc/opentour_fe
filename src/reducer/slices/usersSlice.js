@@ -6,7 +6,7 @@ export const fetchUsers = createAsyncThunk(
     // eslint-disable-next-line no-unused-vars
     async (_, { dispatch }) => {
         const data = {
-            type: "/v1/users",
+            type: "/users",
             method: "GET",
             params: {},
             data: {},
@@ -45,12 +45,13 @@ const usersSlice = createSlice({
             state.loading = 'pending'
         })
         builder.addCase(fetchUsers.rejected, (state) => {
-            state.loading = 'inactivo'
+            state.loading = 'rejected'
         })
         builder.addCase(fetchUsers.fulfilled, (state, { payload }) => {
-            state.loading = 'inactivo';
+            state.loading = 'completed';
             usersAdapter.setAll(state, payload)
         })
+
         builder.addCase(newUsers.pending, (state) => {
             state.loading = 'pending'
         })

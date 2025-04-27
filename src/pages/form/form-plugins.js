@@ -21,76 +21,77 @@ function FormPlugins() {
 	const [code5, setCode5] = useState();
 	const [code6, setCode6] = useState();
 	const [code7, setCode7] = useState();
-	
+
 	const [maxDateDisabled, setMaxDateDisabled] = useState(true);
-  const [startDate, setStartDate] = useState(new Date());
-  const [sketchBackgroundColor, setSketchBackgroundColor] = useState('#348fe2');
-  const [chromeBackgroundColor, setChromeBackgroundColor] = useState('#8753de');
-  const [tags, setTags] = useState([
-    { value: 1, label: 'Apples' },
-    { value: 2, label: 'Pears' }
-  ]);
-  const [suggestions] = useState([
-    { value: 1, label: 'Apples' },
-    { value: 2, label: 'Pears' },
-    { value: 3, label: 'Bananas' },
-    { value: 4, label: 'Mangos' },
-    { value: 5, label: 'Lemons' },
-    { value: 6, label: 'Apricots' }
-  ]);
-  const [text] = useState('');
-  const editorRef = useRef(null);
+	const [startDate, setStartDate] = useState(new Date());
+	console.log(new Date())
+	const [sketchBackgroundColor, setSketchBackgroundColor] = useState('#348fe2');
+	const [chromeBackgroundColor, setChromeBackgroundColor] = useState('#8753de');
+	const [tags, setTags] = useState([
+		{ value: 1, label: 'Apples' },
+		{ value: 2, label: 'Pears' }
+	]);
+	const [suggestions] = useState([
+		{ value: 1, label: 'Apples' },
+		{ value: 2, label: 'Pears' },
+		{ value: 3, label: 'Bananas' },
+		{ value: 4, label: 'Mangos' },
+		{ value: 5, label: 'Lemons' },
+		{ value: 6, label: 'Apricots' }
+	]);
+	const [text] = useState('');
+	const editorRef = useRef(null);
 
-  const minDateRange = (current) => {
-    return current.isAfter(DateTime.moment().subtract(1, 'day'));
-  };
+	const minDateRange = (current) => {
+		return current.isAfter(DateTime.moment().subtract(1, 'day'));
+	};
 
-  const maxDateRange = (current) => {
-    return current.isAfter(editorRef.current);
-  };
+	const maxDateRange = (current) => {
+		return current.isAfter(editorRef.current);
+	};
 
-  const minDateChange = (value) => {
-    setMaxDateDisabled(false);
-    editorRef.current = value;
-  };
+	const minDateChange = (value) => {
+		setMaxDateDisabled(false);
+		editorRef.current = value;
+	};
 
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
+	const handleChange = (date) => {
+		setStartDate(date);
+	};
 
-  const handleSketchChangeComplete = (color) => {
-    setSketchBackgroundColor(color.hex);
-  };
+	const handleSketchChangeComplete = (color) => {
+		setSketchBackgroundColor(color.hex);
+	};
 
-  const handleChromeChangeComplete = (color) => {
-    setChromeBackgroundColor(color.hex);
-  };
+	const handleChromeChangeComplete = (color) => {
+		setChromeBackgroundColor(color.hex);
+	};
 
-  const handleDelete = useCallback(
-    (tagIndex) => {
-      setTags(tags.filter((_, i) => i !== tagIndex))
-    },
-    [tags]
-  );
+	const handleDelete = useCallback(
+		(tagIndex) => {
+			setTags(tags.filter((_, i) => i !== tagIndex))
+		},
+		[tags]
+	);
 
-  const handleAdd = (newTag) => {
-    setTags([...tags, newTag]);
-  };
+	const handleAdd = (newTag) => {
+		setTags([...tags, newTag]);
+	};
 
-  const selectOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ];
-  
+	const selectOptions = [
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' }
+	];
+
 	useEffect(() => {
-		fetch('/assets/data/form-plugins/code-1.json').then(function(response) { return response.text(); }).then((html) => { setCode1(html); });
-		fetch('/assets/data/form-plugins/code-2.json').then(function(response) { return response.text(); }).then((html) => { setCode2(html); });
-		fetch('/assets/data/form-plugins/code-3.json').then(function(response) { return response.text(); }).then((html) => { setCode3(html); });
-		fetch('/assets/data/form-plugins/code-4.json').then(function(response) { return response.text(); }).then((html) => { setCode4(html); });
-		fetch('/assets/data/form-plugins/code-5.json').then(function(response) { return response.text(); }).then((html) => { setCode5(html); });
-		fetch('/assets/data/form-plugins/code-6.json').then(function(response) { return response.text(); }).then((html) => { setCode6(html); });
-		fetch('/assets/data/form-plugins/code-7.json').then(function(response) { return response.text(); }).then((html) => { setCode7(html); });
+		fetch('/assets/data/form-plugins/code-1.json').then(function (response) { return response.text(); }).then((html) => { setCode1(html); });
+		fetch('/assets/data/form-plugins/code-2.json').then(function (response) { return response.text(); }).then((html) => { setCode2(html); });
+		fetch('/assets/data/form-plugins/code-3.json').then(function (response) { return response.text(); }).then((html) => { setCode3(html); });
+		fetch('/assets/data/form-plugins/code-4.json').then(function (response) { return response.text(); }).then((html) => { setCode4(html); });
+		fetch('/assets/data/form-plugins/code-5.json').then(function (response) { return response.text(); }).then((html) => { setCode5(html); });
+		fetch('/assets/data/form-plugins/code-6.json').then(function (response) { return response.text(); }).then((html) => { setCode6(html); });
+		fetch('/assets/data/form-plugins/code-7.json').then(function (response) { return response.text(); }).then((html) => { setCode7(html); });
 	});
 
 	return (
@@ -101,7 +102,7 @@ function FormPlugins() {
 				<li className="breadcrumb-item active">Form Plugins</li>
 			</ol>
 			<h1 className="page-header">Form Plugins <small>header small text goes here...</small></h1>
-			
+
 			<div className="row">
 				<div className="col-xl-6">
 					<Panel>
@@ -127,10 +128,10 @@ function FormPlugins() {
 									<div className="col-lg-8">
 										<div className="row gx-2">
 											<div className="col-6">
-												<DateTime isValidDate={ minDateRange } inputProps={{ placeholder: 'Min Date' }} closeOnSelect={true} onChange={ minDateChange } />
+												<DateTime isValidDate={minDateRange} inputProps={{ placeholder: 'Min Date' }} closeOnSelect={true} onChange={minDateChange} />
 											</div>
 											<div className="col-6">
-												<DateTime isValidDate={ maxDateRange } inputProps={{ placeholder: 'Max Date', disabled: maxDateDisabled }} closeOnSelect={true} />
+												<DateTime isValidDate={maxDateRange} inputProps={{ placeholder: 'Max Date', disabled: maxDateDisabled }} closeOnSelect={true} />
 											</div>
 										</div>
 									</div>
@@ -141,7 +142,7 @@ function FormPlugins() {
 							<Highlight className='typescript'>{code1}</Highlight>
 						</div>
 					</Panel>
-					
+
 					<Panel>
 						<PanelHeader>
 							React Select
@@ -160,7 +161,10 @@ function FormPlugins() {
 							<Highlight className='typescript'>{code2}</Highlight>
 						</div>
 					</Panel>
-					
+
+
+
+
 					<Panel>
 						<PanelHeader>
 							Datepicker
@@ -170,13 +174,13 @@ function FormPlugins() {
 								<div className="form-group row">
 									<label className="col-lg-4 col-form-label">Default Datepicker</label>
 									<div className="col-lg-8">
-										<DatePicker selected={startDate} onChange={handleChange} className="form-control" />
+										<DatePicker selected={""} onChange={handleChange} className="form-control" />
 									</div>
 								</div>
 								<div className="form-group row">
 									<label className="col-lg-4 col-form-label">Inline Datepicker</label>
 									<div className="col-lg-8">
-										<DatePicker inline selected={startDate} onChange={handleChange} />
+										<DatePicker inline selected={""} onChange={handleChange} />
 									</div>
 								</div>
 							</form>
@@ -185,6 +189,10 @@ function FormPlugins() {
 							<Highlight className='typescript'>{code3}</Highlight>
 						</div>
 					</Panel>
+
+
+
+
 					<Panel>
 						<PanelHeader>
 							React Input Mask
@@ -248,10 +256,10 @@ function FormPlugins() {
 											<input type="text" className="form-control bg-white" readOnly value={sketchBackgroundColor} />
 											<span className="input-group-text">
 												<a href="#/" data-bs-toggle="dropdown" className="p-0 border-0">
-													<i style={{width: '16px', height: '16px', display: 'block', background: sketchBackgroundColor}}></i>
+													<i style={{ width: '16px', height: '16px', display: 'block', background: sketchBackgroundColor }}></i>
 												</a>
 												<div className="dropdown-menu">
-													<SketchPicker color={ sketchBackgroundColor } onChangeComplete={ handleSketchChangeComplete } />
+													<SketchPicker color={sketchBackgroundColor} onChangeComplete={handleSketchChangeComplete} />
 												</div>
 											</span>
 										</div>
@@ -264,10 +272,10 @@ function FormPlugins() {
 											<input type="text" className="form-control bg-white" readOnly value={chromeBackgroundColor} />
 											<span className="input-group-text">
 												<a href="#/" data-bs-toggle="dropdown" className="p-0 border-0">
-													<i style={{width: '16px', height: '16px', display: 'block', background: chromeBackgroundColor}}></i>
+													<i style={{ width: '16px', height: '16px', display: 'block', background: chromeBackgroundColor }}></i>
 												</a>
 												<div className="dropdown-menu">
-													<ChromePicker color={ chromeBackgroundColor } onChangeComplete={ handleChromeChangeComplete } />
+													<ChromePicker color={chromeBackgroundColor} onChangeComplete={handleChromeChangeComplete} />
 												</div>
 											</span>
 										</div>
@@ -290,7 +298,7 @@ function FormPlugins() {
 							<Highlight className='typescript'>{code6}</Highlight>
 						</div>
 					</Panel>
-					
+
 					<Panel>
 						<PanelHeader>
 							React Tags Input

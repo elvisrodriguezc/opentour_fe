@@ -14,7 +14,8 @@ import orderservicesReducer from "./slices/orderservicesSlice.js";
 import payrollExecsReducer from "./slices/payrollExecsSlice.js";
 import payrollsReducer from "./slices/payrollsSlice.js";
 import productsReducer from "./slices/productsSlice.js";
-import programsReducer from "./slices/programsSlice.js";
+import programationsReducer from "./slices/programationsSlice.js";
+import progservicesReducer from "./slices/progservicesSlice.js";
 import resumendiarioReducer from "./slices/resumendiarioSlice.js";
 import servicesReducer from "./slices/servicesSlice.js";
 import tariffsReducer from "./slices/tariffsSlice.js";
@@ -35,6 +36,8 @@ import transfersReducer from "./slices/transfersSlice.js";
 import numeratorsReducer from "./slices/numeratorsSlice.js";
 import findrucsReducer from "./slices/findrucsSlice.js";
 import candidatesReducer from "./slices/candidatesSlice.js";
+import workshiftsReducer from "./slices/workshiftsSlice.js";
+import journeypassesReducer from "./slices/journeypassesSlice.js";
 
 export const store = configureStore({
     reducer: {
@@ -54,7 +57,8 @@ export const store = configureStore({
         payrollExecs: payrollExecsReducer,
         payrolls: payrollsReducer,
         products: productsReducer,
-        programs: programsReducer,
+        programations: programationsReducer,
+        progservices: progservicesReducer,
         resumendiario: resumendiarioReducer,
         services: servicesReducer,
         tariffs: tariffsReducer,
@@ -75,5 +79,7 @@ export const store = configureStore({
         findrucs: findrucsReducer,
 
         candidates: candidatesReducer,
+        workshifts: workshiftsReducer,
+        journeypasses: journeypassesReducer,
     },
 })

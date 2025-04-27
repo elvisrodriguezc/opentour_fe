@@ -9,11 +9,11 @@ import TopMenu from './components/top-menu/top-menu.jsx';
 import Content from './components/content/content.jsx';
 import ThemePanel from './components/theme-panel/theme-panel.jsx';
 
-function App() {	
+function App() {
 	const [appTheme] = useState('');
 	const [appClass, setAppClass] = useState('');
-	const [appDarkMode, setAppDarkMode] = useState(false);
-	const [appGradientEnabled, setAppGradientEnabled] = useState(false);
+	const [appDarkMode, setAppDarkMode] = useState(true);
+	const [appGradientEnabled, setAppGradientEnabled] = useState(true);
 	const [appHeaderNone, setAppHeaderNone] = useState(false);
 	const [appHeaderFixed, setAppHeaderFixed] = useState(true);
 	const [appHeaderInverse, setAppHeaderInverse] = useState(false);
@@ -42,8 +42,8 @@ function App() {
 	const handleSetAppClass = (value) => {
 		setAppClass(value);
 	};
-  
-  const handleSetAppHeaderNone = (value) => {
+
+	const handleSetAppHeaderNone = (value) => {
 		setAppHeaderNone(value);
 	};
 
@@ -206,12 +206,12 @@ function App() {
 		}
 		document.dispatchEvent(new Event('theme-reload'));
 	};
-	
+
 	const toggleAppSidebarEnd = (e) => {
 		e.preventDefault();
 		setAppSidebarEndToggled(!appSidebarEndToggled);
 	};
-	
+
 	const toggleAppSidebarEndMobile = (e) => {
 		e.preventDefault();
 		setAppSidebarEndMobileToggled(!appSidebarEndMobileToggled);
